@@ -1,5 +1,4 @@
 package shapecalcser;
-
 import java.util.LinkedList;
 import java.util.Optional;
 import javafx.application.Application;

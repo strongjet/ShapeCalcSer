@@ -1,5 +1,4 @@
 package shapecalcser;
-
 /**
  *
  * @author Radwane

@@ -1,8 +1,8 @@
 package shapecalcser;
 
 import java.io.IOException;
-import java.util.Scanner;
 import javafx.application.Application;
+import java.util.Scanner;
 
 /**
  *
@@ -24,9 +24,9 @@ public abstract class Shape implements java.io.Serializable {
 
     public int getNoOfSides() {
         return noOfSides;
-        
     }
-        public static void main(String[] args) throws IOException {
+
+    public static void main(String[] args) throws IOException {
         //Server s = new Server();
         
         Scanner input = new Scanner(System.in);
@@ -37,6 +37,7 @@ public abstract class Shape implements java.io.Serializable {
 
         } else if (choice.matches("2")){
             
+        DialogInterface DI = new DialogInterface();
 
         }
         else {
