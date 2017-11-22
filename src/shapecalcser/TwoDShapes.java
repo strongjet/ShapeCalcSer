@@ -4,7 +4,7 @@ package shapecalcser;
  *
  * @author Radwane
  */
-public abstract class TwoDShapes extends Shape {
+public abstract class TwoDShapes extends Shape implements java.io.Serializable {
 
     public TwoDShapes(String name, int noOfSides) {
         super(name, noOfSides);
