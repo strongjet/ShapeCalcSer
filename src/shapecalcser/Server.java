@@ -9,7 +9,6 @@ import java.io.ObjectOutputStream;
 
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
 
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -48,18 +47,14 @@ public class Server extends Thread {
                     System.out.println("Server: Just connected to " + serverI.getRemoteSocketAddress());
 
                     shapes = (LinkedList<Shape>) OinputFromClient.readObject();
-                    System.out.println(shapes);
 
                     String Choice = DinputFromClient.readUTF();
                     serializeStudents(shapes, file);
 
                     if (Choice.contains("Send")) {
-                        LinkedList<Shape> Nshapes = deserializeStudents(file);
                         
-                        for (int i = 0; i < Nshapes.size(); i++) {
-                            System.out.println(Nshapes.get(i).toString());
-                        }
-
+                        LinkedList<Shape> Nshapes = deserialize(file);
+                        System.out.println(Nshapes);
                         ObjectOutputStream OtoClient = new ObjectOutputStream(serverI.getOutputStream());
                         OtoClient.writeObject(Nshapes);
                         OtoClient.flush();
@@ -82,7 +77,7 @@ public class Server extends Thread {
         FileOutputStream fileOut;
         try {
 
-            fileOut = new FileOutputStream(file);
+            fileOut = new FileOutputStream(file, true);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(shapes);
             out.close();
@@ -94,17 +89,29 @@ public class Server extends Thread {
         return;
     }
 
-    public static LinkedList<Shape> deserializeStudents(String file) {
+    public static LinkedList<Shape> deserialize(String file) throws IOException, ClassNotFoundException {
         LinkedList<Shape> Nshapes = null;
+        ObjectInputStream in = null;
         try {
+
             FileInputStream fileIn = new FileInputStream(file);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
+            in = new ObjectInputStream(fileIn);
             Nshapes = (LinkedList<Shape>) in.readObject();
-            in.close();
-            fileIn.close();
+            Shape readobj = null;
+            readobj = (Shape) in.readObject();
+
+            do {
+                readobj = (Shape) in.readObject();
+                if (readobj != null) {
+                    Nshapes.add(readobj);
+                }
+            } while (readobj != null);
+
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+        }
+        if (in != null) {
+            in.close();
         }
         return Nshapes;
     }

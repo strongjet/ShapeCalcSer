@@ -1,7 +1,9 @@
 package shapecalcser;
+
 import java.util.LinkedList;
 import java.util.Optional;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -334,25 +336,18 @@ public class Interface extends Application {
                 alert.showAndWait();
             } else if (Selection.matches("Send")) {
                 Interact client = new Interact(shapes, "Send");
-                shapes = new LinkedList();
             } else if (Selection.matches("Triangle")) {
                 Interact client = new Interact(shapes, "Triangle");
-                shapes = new LinkedList();
             } else if (Selection.matches("Circle")) {
                 Interact client = new Interact(shapes, "Circle");
-                shapes = new LinkedList();
             } else if (Selection.matches("Rectangle")) {
                 Interact client = new Interact(shapes, "Rectangle");
-                shapes = new LinkedList();
             } else if (Selection.matches("Sphere")) {
                 Interact client = new Interact(shapes, "Sphere");
-                shapes = new LinkedList();
             } else if (Selection.matches("Cylinder")) {
                 Interact client = new Interact(shapes, "Cylinder");
-                shapes = new LinkedList();
             } else if (Selection.matches("All")) {
                 Interact client = new Interact(shapes, "All");
-                shapes = new LinkedList();
             }
         });
 
@@ -428,7 +423,7 @@ public class Interface extends Application {
                 JOptionPane.WARNING_MESSAGE
         );
         return input;
-    } 
+    }
 
     public static void main(String[] args) {
         launch(args);
