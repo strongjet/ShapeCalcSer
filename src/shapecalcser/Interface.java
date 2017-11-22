@@ -327,7 +327,34 @@ public class Interface extends Application {
 
             String Selection = ConfirmationDialog();
 
-            
+            if (Selection.matches("null")) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Nothing happening here!");
+                alert.setHeaderText(null);
+                alert.setContentText("Nothing happened, shapes were not sent to the server.");
+                alert.showAndWait();
+            } else if (Selection.matches("Send")) {
+                Interact client = new Interact(shapes, "Send");
+                shapes = new LinkedList();
+            } else if (Selection.matches("Triangle")) {
+                Interact client = new Interact(shapes, "Triangle");
+                shapes = new LinkedList();
+            } else if (Selection.matches("Circle")) {
+                Interact client = new Interact(shapes, "Circle");
+                shapes = new LinkedList();
+            } else if (Selection.matches("Rectangle")) {
+                Interact client = new Interact(shapes, "Rectangle");
+                shapes = new LinkedList();
+            } else if (Selection.matches("Sphere")) {
+                Interact client = new Interact(shapes, "Sphere");
+                shapes = new LinkedList();
+            } else if (Selection.matches("Cylinder")) {
+                Interact client = new Interact(shapes, "Cylinder");
+                shapes = new LinkedList();
+            } else if (Selection.matches("All")) {
+                Interact client = new Interact(shapes, "All");
+                shapes = new LinkedList();
+            }
         });
 
         root.setHgap(10);
